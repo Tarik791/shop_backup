@@ -1,5 +1,9 @@
 # 🛠️ Shop Backup Application
 
+This Laravel-based project serves as a **backup system** that connects to an external API, fetches product data, and stores it into a local backup database. It is intended to serve as a secure and isolated backup solution to ensure data integrity and availability, independent of the main application.
+
+The project uses **Docker** to simplify the setup, making it easy to build, run, and test the application in any environment.
+
 This Laravel application is designed to fetch product data from an external API and store it in a backup database. It uses Docker for containerized development and deployment.
 
 ---
