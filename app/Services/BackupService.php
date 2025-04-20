@@ -9,7 +9,6 @@ use App\Models\Variant;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Log;
 use Exception;
-use Illuminate\Console\Command;
 
 class BackupService
 {
