@@ -9,6 +9,7 @@ use App\Models\Variant;
 use App\Models\ProductImage;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use Illuminate\Console\Command;
 
 class BackupService
 {
@@ -17,7 +18,7 @@ class BackupService
      *
      * @return bool
      */
-    public function runBackup(): bool
+    public function runBackup($token): bool
     {
         try {
             config([
@@ -25,7 +26,7 @@ class BackupService
                 'database.connections.mysql.port' => '3308',
             ]);
             // Make API request to get products data
-            $response = Http::timeout(10)->get(config('app.api_url'));
+            $response = Http::withToken($token)->timeout(10)->get(config('app.api_url'));
 
             if (!$response->successful()) {
                 Log::error('Backup failed: invalid response');

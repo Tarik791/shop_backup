@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Services\BackupService;
+use App\Services\ApiAuthenticator;
 
 class BackupProducts extends Command
 {
@@ -19,7 +20,7 @@ class BackupProducts extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Performs a secure backup of product data from the API, with authentication via email and password.';
 
     /**
      * Execute the console command.
@@ -27,9 +28,15 @@ class BackupProducts extends Command
 
     public function handle()
     {
+        $auth = app(ApiAuthenticator::class);
+        $token = $auth->authenticate($this);
+    
+        if (!$token) {
+            return;
+        }
         $this->info("start backup...");
         $backup = app(BackupService::class);
-        $success = $backup->runBackup();
+        $success = $backup->runBackup($token);
     
         if ($success) {
             $this->info("Backup successfully completed.");

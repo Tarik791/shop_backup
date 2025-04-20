@@ -135,4 +135,17 @@ return [
     */
 
     'api_url' => env('API_URL', 'http://localhost:8080/api/products'),    
+
+        /*
+    |--------------------------------------------------------------------------
+    | API Login URL
+    |--------------------------------------------------------------------------
+    |
+    | This value is the base URL for the external API that your application
+    | will interact with. You can define it in your .env file to change it
+    | based on the environment (development, production, etc.).
+    |
+    */
+
+    'api_login_url' => env('API_LOGIN_URL', 'http://localhost:8080/api/login'),    
 ];
